@@ -1,0 +1,71 @@
+/******** PROJECTS PAGE ********/
+
+.page-title {
+    padding: 50px 60px 20px;
+    font-size: 38px;
+    font-weight: 700;
+    color: #eafffd;
+}
+
+/* Container */
+.project-container {
+    padding: 30px 60px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+/* Project Card */
+.project-box {
+    background: #122b27;
+    padding: 28px;
+    border-radius: 16px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+/* Hover effect (same feel as track-card / feature-card) */
+.project-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.35);
+}
+
+/* Project Title */
+.project-box h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #36e2b2;
+    font-weight: 600;
+}
+
+/* Project Description */
+.project-box p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #cfd8d6;
+    opacity: 0.95;
+}
+
+/******** RESPONSIVE ********/
+
+@media (max-width: 900px) {
+    .page-title {
+        padding: 40px 30px 15px;
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .project-container {
+        padding: 20px 30px 60px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-title {
+        font-size: 26px;
+    }
+
+    .project-box {
+        padding: 22px;
+    }
+}

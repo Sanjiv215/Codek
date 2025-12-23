@@ -23,6 +23,7 @@ header {
 }
 
 .logo {
+  text-decoration: none;
     font-size: 28px;
     font-weight: 700;
     color: #36e2b2;
@@ -64,6 +65,7 @@ nav a:hover {
     gap: 30px;
 }
 
+
 .hero-text h1 {
     font-size: 46px;
     font-weight: 700;
@@ -87,6 +89,7 @@ nav a:hover {
 .primary-btn {
     background: #36e2b2;
     color: #000;
+    
     margin-right: 12px;
 }
 
@@ -107,6 +110,8 @@ nav a:hover {
     overflow-x: auto;
 }
 
+
+
 /******** TRACKS SECTION ********/
 .tracks {
     height: auto;
@@ -125,10 +130,15 @@ nav a:hover {
 }
 
 .track-card {
-    background: #0f262c;
+  background: #122b27;
     padding: 18px;
     height: 100%;
     border-radius: 14px;
+}
+.track-card:hover{
+    transform: translateY(-8px);
+    transition-duration: 0.5s;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
 .track-logo {
@@ -181,6 +191,64 @@ nav a:hover {
     opacity: .9;
 }
 
+
+
+/* Why Codek */
+
+.why-platform {
+  padding: 30px 8%;
+  background-color: #0b2229;
+  color: #ffffff;
+  text-align: center;
+}
+
+.why-platform h2 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  max-width: 700px;
+  margin: 0 auto 50px;
+  font-size: 18px;
+  color: #cfd8d6;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background: #122b27;
+  padding: 30px;
+  border-radius: 14px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.feature-card .icon {
+  font-size: 32px;
+}
+
+.feature-card h3 {
+  margin: 15px 0 10px;
+  font-size: 22px;
+}
+
+.feature-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #dbe6e3;
+}
+
+
 /******** RESPONSIVE ********/
 @media (max-width: 900px) {
     header {
@@ -216,6 +284,7 @@ nav a:hover {
         text-align: center;
     }
 }
+
 
 /*Practice page*/
 .practice-container {
@@ -262,4 +331,96 @@ textarea {
     border-radius: 8px;
     color: #eafffd;
     font-family: monospace;
+
+
+/* FOOTER */
+
+.site-footer {
+  background: #07161c;
+  color: #cfd8d6;
+  padding: 60px 80px 30px;
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-brand h2 {
+  color: #ffffff;
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #aab7b4;
+}
+
+.footer-column h4 {
+  color: #ffffff;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.footer-column a {
+  display: block;
+  text-decoration: none;
+  color: #aab7b4;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.footer-column a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 40px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-bottom p {
+  font-size: 13px;
+  color: #9aa5a2;
+}
+
+.footer-legal a {
+  font-size: 13px;
+  color: #9aa5a2;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.footer-legal a:hover {
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+}
 }
