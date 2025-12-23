@@ -216,3 +216,50 @@ nav a:hover {
         text-align: center;
     }
 }
+
+/*Practice page*/
+.practice-container {
+    display: flex;
+    gap: 20px;
+    padding: 40px 60px;
+    flex-wrap: wrap;
+}
+
+/* Left panel */
+.question-panel {
+    flex: 1 1 25%;
+    min-width: 250px;
+}
+
+/* Right panel */
+.editor-panel {
+    flex: 1 1 70%;
+    min-width: 400px;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+textarea {
+    width: 100%;
+    height: 250px;
+    background-color: #0b2229; /* matches main background */
+    color: #eafffd;
+    border-radius: 8px;
+    padding: 10px;
+    border: none;
+    resize: none;
+}
+
+.output {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 8px;
+    color: #eafffd;
+    font-family: monospace;
+}

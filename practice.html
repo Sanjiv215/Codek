@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Codek</title>
+    <title>Practice - CodeK</title>
+    <link rel="stylesheet" href="style.css"> <!-- main site CSS -->
+    <link rel="stylesheet" href="practice.css"> <!-- your practice page CSS -->
 </head>
 <body>
 
-     <!-- NAVBAR -->
+    <!-- NAVBAR (reuse from main HTML) -->
     <header>
         <div class="logo">CodeK</div>
         <nav>
@@ -21,6 +22,34 @@
         </nav>
     </header>
 
-    
+    <!-- Practice Page Content -->
+    <main class="practice-container">
+
+        <!-- Left panel: Question -->
+        <div class="question-panel code-card">
+            <h3>Practice Question</h3>
+            <label>Language:</label>
+            <select>
+                <option>Python</option>
+                <option>Java</option>
+            </select>
+            <p class="question-text">⚠ Failed to load question.</p>
+            <button class="primary-btn next-btn">Next →</button>
+        </div>
+
+        <!-- Right panel: Code Editor -->
+        <div class="editor-panel code-card">
+            <div class="editor-header">
+                <span>PYTHON</span>
+                <button class="primary-btn run-btn">Run</button>
+            </div>
+            <textarea placeholder="Write your code here..."></textarea>
+            <div class="output">
+                // Output will appear here...
+            </div>
+        </div>
+
+    </main>
+
 </body>
 </html>
