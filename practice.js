@@ -1,56 +1,74 @@
-// function calculate(a, b, operation) {
-//     return operation(a, b);
-// }
+/* ---------- MONACO CONFIG ---------- */
+require.config({
+    paths: {
+        vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs"
+    }
+});
 
-// function add(x, y) {
-//     return x + y;
-// }
+let editor;
 
-// function sub(x, y) {
-//     return x - y;
-// }
-// function mul(x, y) {
-//     return x * y;
-// }
-// function div(x, y) {
-//     return x / y;
-// }
+require(["vs/editor/editor.main"], function () {
+    editor = monaco.editor.create(document.getElementById("editor"), {
+        value: "# Write your code here",
+        language: "python",
+        theme: "vs-dark",
+        automaticLayout: true
+    });
+});
 
-// console.log(calculate(5, 3, add)); 
-// console.log(calculate(5, 3, sub));
+/* ---------- RUN CODE ---------- */
+function runCode() {
+    if (!editor) return;
 
+    const lang = document.getElementById("language").value;
+    const code = editor.getValue();
+    const output = document.getElementById("output");
 
-// function evenOrOdd(num) {
-//     if (num % 2 === 0) {
-//         return "Even";
-//     } else {
-//         return "Odd";
-//     }
-// }
+    output.textContent = "";
 
-// console.log(evenOrOdd(4)); 
-// console.log(evenOrOdd(7));
+    // JavaScript
+    if (lang === "javascript") {
+        try {
+            const result = eval(code);
+            output.textContent = result ?? "JS executed successfully.";
+        } catch (err) {
+            output.textContent = err.toString();
+        }
+    }
 
-// function checkNumber(num) {
-//     return logic(num);
-// }
+    // Python
+    if (lang === "python") {
+        Sk.configure({
+            output: text => {
+                output.textContent += text;
+                output.scrollTop = output.scrollHeight;
+            },
+            read: file => {
+                if (!Sk.builtinFiles || !Sk.builtinFiles["files"][file]) {
+                    throw "File not found: " + file;
+                }
+                return Sk.builtinFiles["files"][file];
+            }
+        });
 
-// function logic(n) {
-//     return n % 2 === 0 ? "Even" : "Odd";
-// }
-
-// console.log(checkNumber(4, logic));
-
-// write a hof a function that print table of every number
-
-function table(num){
-    return logic(num);
-}
-
-function logic(n){
-    for(let i=1; i<=10; i++){
-        console.log(n*i)
-
+        Sk.misceval.asyncToPromise(() =>
+            Sk.importMainWithBody("<stdin>", false, code, true)
+        ).catch(err => {
+            output.textContent = err.toString();
+        });
     }
 }
-console.log(table(4, logic))
+
+/* ---------- LANGUAGE SWITCH ---------- */
+document.getElementById("language").addEventListener("change", function () {
+    if (!editor) return;
+
+    const lang = this.value;
+
+    monaco.editor.setModelLanguage(
+        editor.getModel(),
+        lang === "python" ? "python" : "javascript"
+    );
+
+    document.getElementById("editor-lang").innerText = lang.toUpperCase();
+});

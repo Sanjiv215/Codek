@@ -16,7 +16,7 @@ body {
 .main-layout {
   display: flex;
   align-items:center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
  
   padding: 50px 92px 92px 92px;
@@ -31,8 +31,8 @@ body {
   align-items: center;
 }
 
-.image-section img {
-  width: 90%;
+.monika {
+  width: 300px;
   border-radius: 16px;
 }
 
@@ -122,3 +122,76 @@ h2 {
   cursor: pointer;
  
 }
+
+
+
+  /* ===== CHAT BOX ===== */
+  .chat-box {
+    background: #111822;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .bot-message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #0f1621;
+    padding: 14px 16px;
+    border-radius: 14px;
+    color: #cfe8ff;
+    font-size: 14px;
+  }
+
+  /* ===== SPHERICAL AI INDICATOR ===== */
+  .ai-sphere {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    position: relative;
+    background: radial-gradient(
+      circle at 30% 30%,
+      #9affea,
+      #2ad3b4
+    );
+    box-shadow:
+      0 0 12px rgba(79,255,220,0.9),
+      0 0 28px rgba(79,255,220,0.6);
+    animation: breathe 1.8s ease-in-out infinite;
+  }
+
+  /* soft inner motion */
+  .ai-sphere::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 70% 70%,
+      rgba(255,255,255,0.35),
+      transparent 60%
+    );
+    animation: drift 2.5s linear infinite;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes breathe {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.25);
+      opacity: 1;
+    }
+  }
+
+  @keyframes drift {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

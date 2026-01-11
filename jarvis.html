@@ -1,55 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Jarvis Orb (No JS)</title>
-  <link rel="stylesheet" href="jarvis.css">
+<meta charset="UTF-8">
+<title>Spherical AI Indicator</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, sans-serif;
+  }
+
+  body {
+    height: 100vh;
+    background: #0b0f14;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ===== CHAT BOX ===== */
+  .chat-box {
+    background: #111822;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .bot-message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #0f1621;
+    padding: 14px 16px;
+    border-radius: 14px;
+    color: #cfe8ff;
+    font-size: 14px;
+  }
+
+  /* ===== SPHERICAL AI INDICATOR ===== */
+  .ai-sphere {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    position: relative;
+    background: radial-gradient(
+      circle at 30% 30%,
+      #9affea,
+      #2ad3b4
+    );
+    box-shadow:
+      0 0 12px rgba(79,255,220,0.9),
+      0 0 28px rgba(79,255,220,0.6);
+    animation: breathe 1.8s ease-in-out infinite;
+  }
+
+  /* soft inner motion */
+  .ai-sphere::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 70% 70%,
+      rgba(255,255,255,0.35),
+      transparent 60%
+    );
+    animation: drift 2.5s linear infinite;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes breathe {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.25);
+      opacity: 1;
+    }
+  }
+
+  @keyframes drift {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
 </head>
+
 <body>
 
-<div class="orb">
-  <svg viewBox="0 0 300 300">
-    <defs>
-      <!-- glass glow -->
-      <radialGradient id="glass">
-        <stop offset="0%" stop-color="#0c344a"/>
-        <stop offset="100%" stop-color="#020611"/>
-      </radialGradient>
-
-      <!-- wave gradient -->
-      <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#4fdcff"/>
-        <stop offset="100%" stop-color="#b46cff"/>
-      </linearGradient>
-    </defs>
-
-    <!-- glass sphere -->
-    <circle cx="150" cy="150" r="130" fill="url(#glass)" />
-
-    <!-- clipping area -->
-    <clipPath id="clip">
-      <circle cx="150" cy="150" r="130"/>
-    </clipPath>
-
-    <!-- waves -->
-    <g clip-path="url(#clip)">
-      <path class="wave wave1"
-        d="M0 150 C 60 110, 120 190, 180 150 S 300 150, 360 150"
-        stroke="url(#waveGrad)"
-        stroke-width="14"
-        fill="none"/>
-
-      <path class="wave wave2"
-        d="M0 150 C 60 190, 120 110, 180 150 S 300 150, 360 150"
-        stroke="url(#waveGrad)"
-        stroke-width="14"
-        fill="none"/>
-    </g>
-
-    <!-- outer glow -->
-    <circle cx="150" cy="150" r="128" class="glow"/>
-  </svg>
-</div>
+  <div class="chat-box">
+    <div class="bot-message">
+      <span>AI is thinking</span>
+      <div class="ai-sphere"></div>
+    </div>
+  </div>
 
 </body>
 </html>

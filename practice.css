@@ -1,68 +1,54 @@
-/* =========================
-   GLOBAL RESET
-========================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
-
-/* =========================
-   PAGE BASE
-========================= */
+/* PAGE BASE */
 body {
+    margin: 0;
     background: #0b2229;
     color: #eafffd;
-    line-height: 1.5;
+    font-family: Inter, sans-serif;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
     background: #07161c;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    padding: 20px 0;
 }
 
-header h2 {
-    width: 90vw;
-    max-width: 1400px;
-    margin: 0 auto;
+.logo {
+    font-size: 26px;
+    font-weight: 700;
     color: #36e2b2;
-    font-size: 24px;
 }
 
-/* =========================
-   MAIN LAYOUT (90% SCREEN)
-========================= */
-main {
+nav a {
+    color: #cfd8d6;
+    margin-left: 16px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* MAIN LAYOUT */
+.practice-container {
     display: flex;
     gap: 30px;
-
-    width: 90vw;              /* 90% of viewport */
-    max-width: 1400px;        /* prevent ultra-wide stretch */
-    margin: 40px auto;        /* center horizontally */
-
+    width: 90vw;
+    max-width: 1400px;
+    margin: 40px auto;
     padding: 30px;
 }
 
-/* =========================
-   QUESTION PANEL
-========================= */
-main > div:first-child {
+/* QUESTION PANEL */
+.question-panel {
     width: 28%;
     background: #07161c;
     padding: 25px;
     border-radius: 14px;
-
     display: flex;
     flex-direction: column;
     gap: 18px;
 }
 
-/* Language dropdown */
 select {
     background: #0b2229;
     color: #eafffd;
@@ -71,7 +57,6 @@ select {
     border: none;
 }
 
-/* Question box */
 #question {
     background: rgba(0,0,0,0.35);
     padding: 15px;
@@ -79,10 +64,8 @@ select {
     min-height: 120px;
 }
 
-/* =========================
-   EDITOR PANEL
-========================= */
-main > div:last-child {
+/* EDITOR PANEL */
+.editor-panel {
     width: 72%;
     background: #07161c;
     padding: 25px;
@@ -91,56 +74,58 @@ main > div:last-child {
     display: flex;
     flex-direction: column;
     gap: 15px;
+
+    min-height: 0; /* 🔥 REQUIRED FOR OUTPUT SCROLL */
 }
 
-/* Editor header */
-main > div:last-child > div:first-child {
+.editor-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     font-weight: 600;
 }
 
-/* =========================
-   OUTPUT
-========================= */
-#output {
-    background: rgba(0,0,0,0.45);
-    padding: 15px;
+/* MONACO EDITOR */
+#editor {
+    height: 300px;
     border-radius: 10px;
-    min-height: 120px;
+    overflow: hidden;
+}
+
+/* OUTPUT */
+.output {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 8px;
+
+    height: 180px;
+    overflow-y: auto;
+
+    color: #eafffd;
     font-family: monospace;
+    font-size: 14px;
     white-space: pre-wrap;
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTON */
 button {
     background: #36e2b2;
     color: #000;
     border: none;
     padding: 10px 16px;
     border-radius: 8px;
-    cursor: pointer;
     font-weight: 600;
-    transition: 0.2s;
+    cursor: pointer;
 }
 
-button:hover {
-    background: #2bcfa2;
-}
-
-/* =========================
-   RESPONSIVE (SAFE)
-========================= */
+/* RESPONSIVE */
 @media (max-width: 900px) {
-    main {
+    .practice-container {
         flex-direction: column;
-        width: 95vw;
     }
 
-    main > div {
+    .question-panel,
+    .editor-panel {
         width: 100%;
     }
 }

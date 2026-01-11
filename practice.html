@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practice - CodeK</title> 
-    <link rel="stylesheet" href="style.css"> <!-- main  site CSS -->
-    <link rel="stylesheet" href="practice.css"> <!-- your practice page CSS -->
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CodeK Practice</title>
-    <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="practice.css">
-    
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-
-    <!-- NAVBAR (reuse from main HTML) -->
-    <header>
-        <div class="logo">CodeK</div>
+<header>
+        <a class="logo" href="index.html">
+            <div>CodeK</div>
+        </a>
         <nav>
             <a href="index.html">Home</a>
             <a href="practice.html">Practice</a>
@@ -32,44 +25,10 @@
         </nav>
     </header>
 
-    <!-- Practice Page Content -->
-    <main class="practice-container">
-
-        <!-- Left panel: Question -->
-        <div class="question-panel code-card">
-            <h3>Practice Question</h3>
-            <label>Language:</label>
-            <select>
-                <option>Python</option>
-                <option>Java</option>
-            </select>
-            <p class="question-text">⚠ Failed to load question.</p>
-            <button class="primary-btn next-btn">Next →</button>
-        </div>
-
-        <!-- Right panel: Code Editor -->
-        <div class="editor-panel code-card">
-            <div class="editor-header">
-                <span>PYTHON</span>
-                <button class="primary-btn run-btn">Run</button>
-            </div>
-            <textarea placeholder="Write your code here..."></textarea>
-            <div class="output">
-                // Output will appear here...
-            </div>
-        </div>
-
-    </main>
-
-
-<header>
-    <h2>CodeK Practice</h2>
-</header>
-
-<main>
+<main class="practice-container">
 
     <!-- QUESTION PANEL -->
-    <div>
+    <div class="question-panel">
         <h3>Practice Question</h3>
 
         <label>Language:</label>
@@ -85,106 +44,29 @@
         <button>Next</button>
     </div>
 
-    <hr>
-
     <!-- EDITOR PANEL -->
-    <div>
-        <div>
+    <div class="editor-panel">
+        <div class="editor-header">
             <span id="editor-lang">PYTHON</span>
             <button onclick="runCode()">Run</button>
         </div>
 
-        <!-- MONACO EDITOR -->
-        <div id="editor" style="height:300px;border:1px solid #ccc;"></div>
+        <div id="editor"></div>
 
-        <!-- OUTPUT -->
-        <pre id="output">
-            <p>//Output...</p>
-        </pre>
+        <pre id="output" class="output">// Output will appear here...</pre>
     </div>
 
 </main>
 
-<!-- ================= SCRIPTS START HERE ================= -->
-
-<!-- 1️ REQUIRE.JS (needed by Monaco) -->
+<!-- RequireJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
 
-<script>
-    require.config({
-        paths: {
-            vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs"
-        }
-    });
-
-    let editor;
-
-    require(["vs/editor/editor.main"], function () {
-        editor = monaco.editor.create(document.getElementById("editor"), {
-            value: "# Write your code here\n",
-            language: "python",
-            theme: "vs-dark",
-            automaticLayout: true
-        });
-    });
-</script>
-
-<!-- 2️ SKULPT (Python in Browser) -->
+<!-- Skulpt -->
 <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
 
-<!-- 3️MAIN LOGIC -->
-<script>
-function runCode() {
-    const lang = document.getElementById("language").value;
-    const code = editor.getValue();
-    const output = document.getElementById("output");
-
-    output.textContent = "";
-
-    if (lang === "javascript") {
-        try {
-            const result = eval(code);
-            output.textContent = result !== undefined ? result : "JS executed successfully.";
-        } catch (err) {
-            output.textContent = err;
-        }
-    }
-
-    if (lang === "python") {
-        Sk.configure({
-            output: text => output.textContent += text,
-            read: file => {
-                if (!Sk.builtinFiles || !Sk.builtinFiles["files"][file]) {
-                    throw "File not found: " + file;
-                }
-                return Sk.builtinFiles["files"][file];
-            }
-        });
-
-        Sk.misceval.asyncToPromise(() =>
-            Sk.importMainWithBody("<stdin>", false, code, true)
-        ).catch(err => {
-            output.textContent = err.toString();
-        });
-    }
-}
-</script>
-
-<!-- 4️ LANGUAGE CHANGE HANDLER -->
-<script>
-document.getElementById("language").addEventListener("change", function () {
-    const lang = this.value;
-    monaco.editor.setModelLanguage(
-        editor.getModel(),
-        lang === "python" ? "python" : "javascript"
-    );
-    document.getElementById("editor-lang").innerText = lang.toUpperCase();
-});
-</script>
-
-<!-- ================= SCRIPTS END HERE ================= -->
-
+<!-- Your JS -->
+<script src="practice.js"></script>
 
 </body>
 </html>
